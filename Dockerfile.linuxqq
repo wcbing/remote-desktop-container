@@ -1,0 +1,6 @@
+FROM wcbing/remote-desktop:latest
+
+RUN curl -fsSL https://packages.wcbing.top/deb/add.sh | sh && \
+    apt update && \
+    apt-get install -y linuxqq && \
+    rm -rf /var/lib/apt/lists/*

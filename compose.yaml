@@ -1,0 +1,13 @@
+services:
+  remote-desktop:
+    container_name: remote-desktop
+    image: wcbing/remote-desktop:latest
+    restart: unless-stopped
+    ports:
+      - 43389:3389
+    environment:
+      RDP_USER: test
+      RDP_PASSWORD: test
+    volumes:
+      - /home/test:/home/test
+ 
