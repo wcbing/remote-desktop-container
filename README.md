@@ -13,6 +13,8 @@ Debian + Xfce，主要面向轻量级用途，如管理文件、浏览网页。
 
 > ⚠️ 运行该桌面容器请保证至少有 300 MB 以上的可用内存，使用 Firefox 或 QQ 请保证至少有 1 GB 以上的可用内存。
 
+> ⚠️ QQ 等 Electron/Chromium 应用，由于 Docker 的 user namespace 支持较差，需要将 QQ 的 `.desktop` 文件中启动命令后加上 `--no-sandbox`，或者在你新建容器时加上 `--privileged` 选项（不推荐）。Podman 没有问题，用户可直接使用。
+
 ## 用法样例
 
 两个可定制的环境变量：
