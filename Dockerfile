@@ -1,4 +1,4 @@
-ARG TAG=latest
+ARG TAG=13
 
 # Build xrdp pulseaudio modules
 # https://github.com/scottyhardy/docker-remote-desktop/blob/master/Dockerfile
@@ -16,7 +16,8 @@ RUN sed -i 's/deb.debian.org/mirrors.cernet.edu.cn/g' /etc/apt/sources.list.d/de
         git \
         libtool \
         libltdl-dev \
-        sudo && \
+        sudo \
+        doxygen && \
     rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/neutrinolabs/pulseaudio-module-xrdp.git /pulseaudio-module-xrdp
@@ -38,6 +39,7 @@ RUN sed -i 's/deb.debian.org/mirrors.cernet.edu.cn/g' /etc/apt/sources.list.d/de
         sudo \
         xfce4 \
         xfce4-terminal \
+        adwaita-icon-theme-legacy \
         desktop-base \
         dbus-x11 \
         xorgxrdp \
@@ -56,6 +58,7 @@ RUN sed -i 's/deb.debian.org/mirrors.cernet.edu.cn/g' /etc/apt/sources.list.d/de
     echo 'zh_CN.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen && \
     echo 'LANG=zh_CN.UTF-8' > /etc/default/locale
 
+RUN sed -i 's/^WebBrowser.*/WebBrowser=firefox/g' /etc/xdg/xfce4/helpers.rc
 # Custom UI (only bottom panel)
 COPY Xfce/xfce4-panel.xml /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/
 
